@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/icono.ico" type="image/x-icon">
+    <title>SAT - REPUESTOS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="info-bar">
+            <div class="info-item">
+                <i class="fas fa-users"></i>
+                <span id="userCount">0</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-database"></i>
+                <span id="totalRecords">0</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-server"></i>
+                <span id="serverStatus">⚪</span>
+            </div>
+        </div>
+        <h1>SAT - REPUESTOS</h1>
+        <div class="nav-links">
+            <a href="/formulario.html" class="nav-link">Formulario de Pedidos</a>
+        </div>
+        <input type="text" id="searchInput" placeholder="Buscar repuestos..." onkeyup="buscarRepuestos()">
+        <table id="partsTable">
+            <thead>
+                <tr>
+                    <th>REFERENCIA</th>
+                    <th>DESCRIPCIÓN</th>
+                    <th>MÁQUINA</th>
+                    <th>GRUPO</th>
+                    <th>COMENTARIO</th>
+                    <th>CANTIDAD</th>
+                    <th class="actions-column">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los datos se insertarán aquí dinámicamente -->
+            </tbody>
+        </table>
+        <!-- Pagination Buttons -->
+        <div class="pagination">
+            <button id="prevButton" onclick="loadPreviousPage()" disabled>Anterior</button>
+            <span id="pageInfo"><span id="currentPage">1</span>/<span id="totalPages">1</span></span>
+            <button id="nextButton" onclick="loadNextPage()">Siguiente</button>
+        </div>
+        <div>
+        <h1> </h1>
+        <form id="addPartForm">
+            <input type="text" id="addReferencia" placeholder="Referencia" required>
+            <input type="text" id="addDescripcion" placeholder="Descripción" required>
+            <input type="text" id="addMaquina" placeholder="Máquina" required>
+            <input type="text" id="addGrupo" placeholder="Grupo" required>
+            <input type="text" id="addComentario" placeholder="Comentario" required>
+            <input type="number" id="addCantidad" placeholder="Cantidad" required>
+            <button type="button" id="addButton" onclick="crearRepuesto()">Añadir</button>
+            <button type="button" id="cancelButton" onclick="cancelarEdicion()" style="display: none;">Cancelar</button>
+        </form>
+        </div>
+        <button class="admin-button" onclick="resetearTodos()">Resetear Todos</button> <!-- Botón de reseteo masivo -->
+        <button class="admin-button" onclick="descargarDatos()">Descargar Datos</button>
+        <button class="admin-button" onclick="document.getElementById('fileInput').click()">Cargar Datos</button>
+        <input type="file" id="fileInput" style="display: none;" onchange="cargarArchivoExcel(this.files[0])">
+        <div id="error" class="alert" style="display: none;"></div>
+        <div id="success" class="alert" style="display: none;"></div>
+    </div>
+
+    <!-- Modal de autenticación -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <h2>Autenticación de Administrador</h2>
+            <input type="password" id="adminPassword" placeholder="Contraseña">
+            <button onclick="authenticateAdmin()">Iniciar sesión</button>
+        </div>
+    </div>
+
+    <div id="adminArea" style="position: fixed; bottom: 10px; right: 10px; width: 20px; height: 20px;"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

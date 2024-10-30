@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/icono.ico" type="image/x-icon">
+    <title>SAT - Solicitud de Repuestos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles-formulario.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Solicitud de Repuestos</h1>
+        
+        <!-- Añadir después del título -->
+        <div class="nav-links">
+            <a href="/" class="nav-link">Volver al Panel</a>
+        </div>
+
+        <!-- Formulario de registro/login -->
+        <div id="loginForm" class="form-section">
+            <h2>Acceso Cliente</h2>
+            <input type="email" id="emailCliente" placeholder="Correo electrónico" required>
+            <button onclick="verificarCliente()">Continuar</button>
+        </div>
+
+        <!-- Formulario de datos del cliente (inicialmente oculto) -->
+        <div id="datosClienteForm" class="form-section" style="display: none;">
+            <h2>Datos del Cliente</h2>
+            <input type="text" id="nombreCliente" placeholder="Nombre completo" required>
+            <input type="text" id="direccionCliente" placeholder="Dirección de entrega" required>
+            <button onclick="guardarDatosCliente()">Guardar datos</button>
+        </div>
+
+        <!-- Formulario de pedido (inicialmente oculto) -->
+        <div id="pedidoForm" class="form-section" style="display: none;">
+            <h2>Realizar Pedido</h2>
+            <div id="itemsPedido">
+                <div class="item-pedido">
+                    <input type="text" placeholder="Referencia" class="referencia-input">
+                    <input type="text" placeholder="Descripción" class="descripcion-input" readonly>
+                    <input type="number" placeholder="Cantidad" class="cantidad-input">
+                    <button type="button" onclick="buscarReferencia(this)">Buscar</button>
+                </div>
+            </div>
+            <button onclick="agregarItem()">+ Añadir otro ítem</button>
+            <button onclick="enviarPedido()">Enviar Pedido</button>
+        </div>
+
+        <div id="mensajeError" class="mensaje error" style="display: none;"></div>
+        <div id="mensajeExito" class="mensaje exito" style="display: none;"></div>
+    </div>
+
+    <script src="formulario.js"></script>
+</body>
+</html>
