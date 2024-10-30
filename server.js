@@ -9,6 +9,7 @@ const http = require('http');
 const socketIo = require('socket.io');
 const Excel = require('exceljs');
 const fileUpload = require('express-fileupload');
+const timeout = require('connect-timeout');
 
 const app = express();
 const server = http.createServer(app);
@@ -51,14 +52,48 @@ app.use((req, res, next) => {
 // Middleware para parsear JSON en el cuerpo de las solicitudes
 app.use(bodyParser.json());
 
+// Middleware para manejar timeouts
+app.use(timeout('30s'));
+app.use(haltOnTimedout);
+
+function haltOnTimedout(req, res, next) {
+    if (!req.timedout) next();
+}
+
 // Conectar a MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: 'spareparts'
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+    family: 4,
+    maxPoolSize: 10,
+    retryWrites: true
 })
-.then(() => console.log('Conectado a MongoDB en la base de datos "spareparts"'))
-.catch((err) => console.error('Error al conectar a MongoDB:', err));
+.then(() => {
+    console.log('Conexión exitosa a MongoDB');
+}).catch(err => {
+    console.error('Error de conexión a MongoDB:', err);
+});
+
+// Agregar manejadores de eventos para la conexión
+mongoose.connection.on('connected', () => {
+    console.log('Mongoose conectado a MongoDB');
+});
+
+mongoose.connection.on('error', (err) => {
+    console.error('Error en la conexión de Mongoose:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+    console.log('Mongoose desconectado de MongoDB');
+});
+
+// Manejar señales de terminación
+process.on('SIGINT', async () => {
+    await mongoose.connection.close();
+    process.exit(0);
+});
 
 // Definir el esquema y modelo para "Part"
 const partSchema = new mongoose.Schema({
@@ -276,7 +311,7 @@ cron.schedule('*/5 * * * *', updateTotalRecords);
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
 
