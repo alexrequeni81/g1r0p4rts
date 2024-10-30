@@ -10,6 +10,9 @@ const socketIo = require('socket.io');
 const Excel = require('exceljs');
 const fileUpload = require('express-fileupload');
 const timeout = require('connect-timeout');
+const compression = require('compression');
+const cors = require('cors');
+const helmet = require('helmet');
 
 const app = express();
 const server = http.createServer(app);
@@ -35,46 +38,35 @@ io.on('connection', (socket) => {
     });
 });
 
-// Middleware para logging de las solicitudes
-app.use((req, res, next) => {
-    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
-    next();
-});
-
-// Middleware para asegurar el tipo MIME correcto para archivos .js
-app.use((req, res, next) => {
-    if (req.url.endsWith('.js')) {
-        res.setHeader('Content-Type', 'application/javascript');
-    }
-    next();
-});
-
-// Middleware para parsear JSON en el cuerpo de las solicitudes
-app.use(bodyParser.json());
-
-// Middleware para manejar timeouts
+// Middleware de seguridad y optimización
+app.use(helmet());
+app.use(compression());
+app.use(cors());
 app.use(timeout('30s'));
-app.use(haltOnTimedout);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
+app.use(express.static(path.join(__dirname, 'frontend')));
 
-function haltOnTimedout(req, res, next) {
-    if (!req.timedout) next();
-}
-
-// Conectar a MongoDB
+// Configuración de MongoDB mejorada
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
     family: 4,
-    maxPoolSize: 10,
-    retryWrites: true
-})
-.then(() => {
+    maxPoolSize: 10
+}).then(() => {
     console.log('Conexión exitosa a MongoDB');
 }).catch(err => {
     console.error('Error de conexión a MongoDB:', err);
 });
+
+// Middleware para manejar timeouts
+function haltOnTimedout(req, res, next) {
+    if (!req.timedout) next();
+}
+app.use(haltOnTimedout);
 
 // Agregar manejadores de eventos para la conexión
 mongoose.connection.on('connected', () => {
@@ -106,9 +98,6 @@ const partSchema = new mongoose.Schema({
 });
 
 const Part = mongoose.model('Part', partSchema, 'databasev1');
-
-// Configurar la carpeta de archivos estáticos
-app.use(express.static(path.join(__dirname, 'frontend')));
 
 // Obtener todos los repuestos (API)
 app.get('/api/parts', async (req, res) => {
@@ -649,4 +638,10 @@ app.get('/api/pedidos/estadisticas', async (req, res) => {
         console.error('Error al obtener estadísticas:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
+});
+
+// Manejo de errores global
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Error interno del servidor' });
 });
