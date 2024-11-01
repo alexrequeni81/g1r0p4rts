@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from pymongo import MongoClient
 import os
 
@@ -22,7 +22,15 @@ def add_client():
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')  # Asegúrate de que index.html esté en la carpeta static
+    return send_from_directory('.', 'index.html')  # Sirve index.html desde la carpeta backend
+
+@app.route('/styles.css')
+def serve_css():
+    return send_from_directory('.', 'styles.css')  # Sirve styles.css desde la carpeta backend
+
+@app.route('/script.js')
+def serve_js():
+    return send_from_directory('.', 'script.js')  # Sirve script.js desde la carpeta backend
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Usa el puerto asignado por Render
