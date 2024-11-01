@@ -1,1 +1,23 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Mi Proyecto</title>
+</head>
+<body>
+    <h1>Bienvenido a Mi Proyecto</h1>
+    <div id="client-form">
+        <h2>Registrar Cliente</h2>
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="email" id="email" placeholder="Email">
+        <button onclick="registrarCliente()">Registrar</button>
+    </div>
+    <div id="client-list">
+        <h2>Clientes Registrados</h2>
+        <ul id="clientes"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
