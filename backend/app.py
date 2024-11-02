@@ -9,19 +9,31 @@ client = MongoClient("mongodb+srv://dbuser:uI7HMA2doZIxf8P5@g1r0p4rts.6yiod.mong
 db = client['test']
 collection = db['users']
 
+# Verificar conexión a la base de datos
+try:
+    client.admin.command('ping')  # Verifica la conexión
+    print("Conexión a MongoDB exitosa.")
+except Exception as e:
+    print(f"Error de conexión a MongoDB: {str(e)}")
+
 @app.route('/api/clients', methods=['GET'])
 def get_clients():
     try:
         clients = list(collection.find())
         return jsonify(clients)
     except Exception as e:
-        return jsonify({"error": str(e)}), 500  # Devuelve el error como JSON
+        print(f"Error al obtener clientes: {str(e)}")  # Imprime el error en los registros
+        return jsonify({"error": "No se pudieron obtener los clientes."}), 500
 
 @app.route('/api/clients', methods=['POST'])
 def add_client():
-    data = request.json
-    collection.insert_one(data)
-    return jsonify({"message": "Cliente agregado"}), 201
+    try:
+        data = request.json
+        collection.insert_one(data)
+        return jsonify({"message": "Cliente agregado"}), 201
+    except Exception as e:
+        print(f"Error al agregar cliente: {str(e)}")  # Imprime el error en los registros
+        return jsonify({"error": "No se pudo agregar el cliente."}), 500
 
 @app.route('/')
 def index():
