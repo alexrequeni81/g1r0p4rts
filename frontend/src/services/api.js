@@ -8,6 +8,11 @@ export const login = async (email, password) => {
   return response.data;
 };
 
+export const getUsers = async () => {
+  const response = await axios.get(`${API_URL}/auth/users`);
+  return response.data;
+};
+
 export const getParts = async () => {
   const response = await axios.get(`${API_URL}/parts`);
   return response.data;
