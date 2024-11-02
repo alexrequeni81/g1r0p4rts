@@ -16,6 +16,11 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/parts', require('./routes/partsRoutes'));
 
+// Nueva ruta para la raíz
+app.get('/', (req, res) => {
+  res.send('Bienvenido a la API de g1r0p4rts'); // Mensaje de bienvenida
+});
+
 // Iniciar el servidor
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT} 🚀`);
