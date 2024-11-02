@@ -11,8 +11,11 @@ collection = db['users']
 
 @app.route('/api/clients', methods=['GET'])
 def get_clients():
-    clients = list(collection.find())
-    return jsonify(clients)
+    try:
+        clients = list(collection.find())
+        return jsonify(clients)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500  # Devuelve el error como JSON
 
 @app.route('/api/clients', methods=['POST'])
 def add_client():
