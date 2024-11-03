@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
+const path = require('path'); // Importa el módulo path
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,9 +17,12 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/parts', require('./routes/partsRoutes'));
 
+// Servir archivos estáticos del frontend
+app.use(express.static(path.join(__dirname, '../frontend/public')));
+
 // Nueva ruta para la raíz
 app.get('/', (req, res) => {
-  res.send('Bienvenido a la APu de g1r0p4rts'); // Mensaje de bienvenida
+  res.sendFile(path.join(__dirname, '../frontend/public/index.html')); // Cambia esto para servir el index.html
 });
 
 // Iniciar el servidor
