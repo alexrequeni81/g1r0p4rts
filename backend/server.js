@@ -18,7 +18,7 @@ app.use('/api/parts', require('./routes/partsRoutes'));
 
 // Nueva ruta para la raíz
 app.get('/', (req, res) => {
-  res.send('Bienvenido a la API de g1r0p4rts'); // Mensaje de bienvenida
+  res.send('Bienvenido a la APu de g1r0p4rts'); // Mensaje de bienvenida
 });
 
 // Iniciar el servidor
