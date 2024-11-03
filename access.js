@@ -9,6 +9,10 @@ document.getElementById('accessForm').addEventListener('submit', async (event) =
         if (response.ok) {
             const user = await response.json();
             if (user.length > 0) {
+                // Almacenar el nombre y el email en el almacenamiento local
+                localStorage.setItem('nombre', nombre);
+                localStorage.setItem('email', email);
+                
                 // Usuario encontrado, redirigir al formulario de compra
                 window.location.href = 'purchase.html';
             } else {
