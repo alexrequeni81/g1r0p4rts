@@ -127,3 +127,13 @@ th {
     text-decoration: none;
     cursor: pointer;
 }
+
+.info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.info-row label {
+    margin-right: 10px;
+}
