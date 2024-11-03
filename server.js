@@ -38,9 +38,10 @@ connectToDatabase();
 
 // Rutas para obtener datos
 app.get('/api/users', async (req, res) => {
+    const { nombre, email } = req.query;
     try {
-        const users = await mongoose.connection.collection('users').find({}).toArray();
-        res.json(users);
+        const user = await mongoose.connection.collection('users').find({ nombre, email }).toArray();
+        res.json(user);
     } catch (error) {
         console.error('Error al obtener usuarios:', error.message);
         res.status(500).json({ error: 'Error al obtener usuarios' });
