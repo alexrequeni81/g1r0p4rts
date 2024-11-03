@@ -11,15 +11,16 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MongoDB usando la variable de entorno
+// URI de conexión a MongoDB
+const MONGODB_URI = "mongodb+srv://dbuser:uI7HMA2doZIxf8P5@g1r0p4rts.6yiod.mongodb.net/test?retryWrites=true&w=majority";
+
+// Conexión a MongoDB
 async function connectToDatabase() {
     try {
         console.log('Intentando conectar a MongoDB...');
-        await mongoose.connect(process.env.MONGODB_URI, {
+        await mongoose.connect(MONGODB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true,
-            useFindAndModify: false
         });
         console.log('Conexión a MongoDB exitosa');
     } catch (error) {
