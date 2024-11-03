@@ -10,7 +10,14 @@
     <h1>Formulario de Compra</h1>
     <div id="userDetails" style="display:none;">
         <h2>Detalles del Cliente</h2>
-        <p id="clienteNombre"></p>
+        <div class="info-row">
+            <p id="clienteNombre" style="display:inline-block; margin-right: 20px;"></p>
+            <label for="direccionEnvio" style="display:inline-block; margin-right: 10px;">Dirección de Envío:</label>
+            <select id="direccionEnvio" style="display:inline-block;">
+                <option value="">Seleccione una dirección</option>
+                <!-- Las opciones se llenarán dinámicamente con JavaScript -->
+            </select>
+        </div>
         <h3>Direcciones</h3>
         <div id="direccionesCliente"></div>
     </div>
