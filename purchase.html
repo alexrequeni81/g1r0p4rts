@@ -23,19 +23,21 @@
 
         <div id="purchaseDetails" style="display:none;">
             <h2>Detalles de Compra</h2>
-            <table id="compraTable">
-                <thead>
-                    <tr>
-                        <th>Referencia</th>
-                        <th>Descripción</th>
-                        <th>Cantidad</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="compraBody">
-                    <!-- Las filas se añadirán dinámicamente con JavaScript -->
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table id="compraTable">
+                    <thead>
+                        <tr>
+                            <th>Referencia</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="compraBody">
+                        <!-- Las filas se añadirán dinámicamente con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
             <button id="addRow">Añadir artículo</button>
             <button id="enviarSolicitud" style="display: none;">Enviar solicitud de pedido</button>
         </div>
