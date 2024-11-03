@@ -11,6 +11,9 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Servir archivos estáticos desde la carpeta actual
+app.use(express.static(path.join(__dirname))); // Esto servirá index.html y otros archivos estáticos
+
 // URI de conexión a MongoDB
 const MONGODB_URI = "mongodb+srv://dbuser:uI7HMA2doZIxf8P5@g1r0p4rts.6yiod.mongodb.net/test?retryWrites=true&w=majority";
 
