@@ -35,7 +35,8 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="number"] {
+input[type="number"],
+select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -45,7 +46,8 @@ input[type="number"] {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="number"]:focus {
+input[type="number"]:focus,
+select:focus {
     border-color: #3498db;
     outline: none;
 }
