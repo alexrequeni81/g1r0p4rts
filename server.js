@@ -56,6 +56,11 @@ app.get('/api/parts', async (req, res) => {
     }
 });
 
+// Ruta para servir index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html')); // Asegúrate de que el archivo index.html esté en la raíz
+});
+
 // Iniciar el servidor
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
