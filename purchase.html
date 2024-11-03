@@ -12,14 +12,12 @@
         <div id="userDetails" class="details-container" style="display:none;">
             <h2>Detalles del Cliente</h2>
             <div class="info-row">
-                <p id="clienteNombre" style="display:inline-block; margin-right: 20px;"></p>
-                <label for="direccionEnvio" style="display:inline-block; margin-right: 10px;">Dirección de Envío:</label>
-                <select id="direccionEnvio" style="display:inline-block;">
+                <div class="cliente-info" id="clienteNombre" style="flex: 1; font-size: 18px; margin-right: 20px;"></div>
+                <select id="direccionEnvio" style="flex: 2; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                     <option value="">Seleccione una dirección</option>
                     <!-- Las opciones se llenarán dinámicamente con JavaScript -->
                 </select>
             </div>
-            <div id="direccionesCliente" style="margin-top: 10px;"></div>
         </div>
 
         <div id="purchaseDetails" style="display:none;">
