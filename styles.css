@@ -26,10 +26,35 @@ body {
     margin-bottom: 20px;
 }
 
+/* Sección de detalles de compra */
+.table-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden; /* Para que los bordes redondeados se apliquen correctamente */
+}
+
 /* Títulos */
 h1, h2 {
     color: #2c3e50;
     margin-bottom: 10px;
+}
+
+/* Estilo para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
 }
 
 /* Estilo para la fila de información */
@@ -51,6 +76,22 @@ select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+/* Botones */
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
 }
 
 /* Resto de estilos... */
