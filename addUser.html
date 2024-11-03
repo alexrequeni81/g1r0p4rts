@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Usuario</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Agregar Usuario</h1>
+    <form id="userForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <h3>Direcciones</h3>
+        <div id="direcciones">
+            <div class="direccion">
+                <label for="tipo_via">Tipo de Vía:</label>
+                <input type="text" class="tipo_via" required>
+                
+                <label for="nombre_via">Nombre de Vía:</label>
+                <input type="text" class="nombre_via" required>
+                
+                <label for="numero">Número:</label>
+                <input type="text" class="numero" required>
+                
+                <label for="telefono">Teléfono:</label>
+                <input type="text" class="telefono" required>
+                
+                <label for="cp">Código Postal:</label>
+                <input type="text" class="cp" required>
+                
+                <label for="poblacion">Población:</label>
+                <input type="text" class="poblacion" required>
+                
+                <label for="provincia">Provincia:</label>
+                <input type="text" class="provincia" required>
+            </div>
+        </div>
+        <button type="button" onclick="addDireccion()">Agregar Dirección</button>
+        <button type="submit">Guardar Usuario</button>
+    </form>
+
+    <script src="addUser.js"></script>
+</body>
+</html>
