@@ -57,6 +57,18 @@ app.get('/api/parts', async (req, res) => {
     }
 });
 
+// Ruta para agregar un nuevo usuario
+app.post('/api/users', async (req, res) => {
+    try {
+        const newUser = req.body;
+        await mongoose.connection.collection('users').insertOne(newUser);
+        res.status(201).json({ message: 'Usuario agregado exitosamente' });
+    } catch (error) {
+        console.error('Error al agregar usuario:', error.message);
+        res.status(500).json({ error: 'Error al agregar usuario' });
+    }
+});
+
 // Ruta para servir index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html')); // Asegúrate de que el archivo index.html esté en la raíz
