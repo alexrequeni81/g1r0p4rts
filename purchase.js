@@ -1,9 +1,16 @@
-document.getElementById('purchaseForm').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Evitar el envío del formulario por defecto
+// Almacenar el nombre y el email en el almacenamiento local
+const nombre = localStorage.getItem('nombre');
+const email = localStorage.getItem('email');
 
-    const nombre = document.getElementById('nombre').value;
-    const email = document.getElementById('email').value;
+if (!nombre || !email) {
+    // Redirigir a la página de control de acceso si no hay datos
+    window.location.href = 'index.html';
+} else {
+    // Si hay datos, mostrar los detalles del cliente
+    mostrarDetallesCliente(nombre, email);
+}
 
+async function mostrarDetallesCliente(nombre, email) {
     try {
         const response = await fetch(`https://g1r0p4rts.onrender.com/api/users?nombre=${nombre}&email=${email}`);
         if (response.ok) {
@@ -20,7 +27,6 @@ document.getElementById('purchaseForm').addEventListener('submit', async (event)
                     direccionesDiv.appendChild(direccionElement);
                 });
                 document.getElementById('userDetails').style.display = 'block';
-                document.getElementById('purchaseForm').style.display = 'none';
                 document.getElementById('purchaseDetails').style.display = 'block';
             } else {
                 alert('Usuario no encontrado. Por favor, verifica los datos.');
@@ -31,7 +37,7 @@ document.getElementById('purchaseForm').addEventListener('submit', async (event)
     } catch (error) {
         console.error('Error al enviar los datos:', error);
     }
-});
+}
 
 // Función para añadir una fila a la tabla de compra
 document.getElementById('addRow').addEventListener('click', () => {
@@ -50,3 +56,5 @@ document.getElementById('addRow').addEventListener('click', () => {
         compraBody.removeChild(newRow);
     });
 });
+
+// Aquí puedes agregar más funciones para manejar el envío de la solicitud de pedido y el resumen del pedido
