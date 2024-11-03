@@ -21,11 +21,16 @@ async function mostrarDetallesCliente(nombre, email) {
                 document.getElementById('clienteNombre').innerText = `Nombre: ${cliente.nombre}`;
                 const direccionesDiv = document.getElementById('direccionesCliente');
                 direccionesDiv.innerHTML = ''; // Limpiar direcciones anteriores
+                const direccionSelect = document.getElementById('direccionEnvio');
+
+                // Llenar el desplegable con las direcciones
                 cliente.direcciones.forEach(direccion => {
-                    const direccionElement = document.createElement('div');
-                    direccionElement.innerText = `${direccion.tipo_via} ${direccion.nombre_via} ${direccion.numero}, ${direccion.poblacion}, ${direccion.provincia} - ${direccion.cp}`;
-                    direccionesDiv.appendChild(direccionElement);
+                    const option = document.createElement('option');
+                    option.value = `${direccion.tipo_via} ${direccion.nombre_via} ${direccion.numero}, ${direccion.poblacion}, ${direccion.provincia} - ${direccion.cp}`;
+                    option.textContent = option.value; // Mostrar la dirección en el desplegable
+                    direccionSelect.appendChild(option);
                 });
+
                 document.getElementById('userDetails').style.display = 'block';
                 document.getElementById('purchaseDetails').style.display = 'block';
             } else {
