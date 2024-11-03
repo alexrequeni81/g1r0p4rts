@@ -7,38 +7,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Formulario de Compra</h1>
-    <div id="userDetails" style="display:none;">
-        <h2>Detalles del Cliente</h2>
-        <div class="info-row">
-            <p id="clienteNombre" style="display:inline-block; margin-right: 20px;"></p>
-            <label for="direccionEnvio" style="display:inline-block; margin-right: 10px;">Dirección de Envío:</label>
-            <select id="direccionEnvio" style="display:inline-block;">
-                <option value="">Seleccione una dirección</option>
-                <!-- Las opciones se llenarán dinámicamente con JavaScript -->
-            </select>
+    <div class="container">
+        <h1>Formulario de Compra</h1>
+        <div id="userDetails" style="display:none;">
+            <h2>Detalles del Cliente</h2>
+            <div class="info-row">
+                <p id="clienteNombre" style="display:inline-block; margin-right: 20px;"></p>
+                <label for="direccionEnvio" style="display:inline-block; margin-right: 10px;">Dirección de Envío:</label>
+                <select id="direccionEnvio" style="display:inline-block;">
+                    <option value="">Seleccione una dirección</option>
+                    <!-- Las opciones se llenarán dinámicamente con JavaScript -->
+                </select>
+            </div>
+            <h3>Direcciones</h3>
+            <div id="direccionesCliente"></div>
         </div>
-        <h3></h3>
-        <div id="direccionesCliente"></div>
-    </div>
 
-    <div id="purchaseDetails" style="display:none;">
-        <h2>Detalles de Compra</h2>
-        <table id="compraTable">
-            <thead>
-                <tr>
-                    <th>Referencia</th>
-                    <th>Descripción</th>
-                    <th>Cantidad</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="compraBody">
-                <!-- Las filas se añadirán dinámicamente con JavaScript -->
-            </tbody>
-        </table>
-        <button id="addRow">Añadir artículo</button>
-        <button id="enviarSolicitud" style="display: none;">Enviar solicitud de pedido</button>
+        <div id="purchaseDetails" style="display:none;">
+            <h2>Detalles de Compra</h2>
+            <table id="compraTable">
+                <thead>
+                    <tr>
+                        <th>Referencia</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="compraBody">
+                    <!-- Las filas se añadirán dinámicamente con JavaScript -->
+                </tbody>
+            </table>
+            <button id="addRow">Añadir artículo</button>
+            <button id="enviarSolicitud" style="display: none;">Enviar solicitud de pedido</button>
+        </div>
     </div>
 
     <script src="purchase.js"></script>
