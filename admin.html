@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - Usuarios y Repuestos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Administración</h1>
+        <h2>Usuarios</h2>
+        <div class="table-container">
+            <table id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="usersBody">
+                    <!-- Las filas se añadirán dinámicamente con JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Repuestos</h2>
+        <div class="table-container">
+            <table id="partsTable">
+                <thead>
+                    <tr>
+                        <th>Referencia</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody id="partsBody">
+                    <!-- Las filas se añadirán dinámicamente con JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
