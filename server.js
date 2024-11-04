@@ -75,6 +75,11 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html')); // Asegúrate de que el archivo index.html esté en la raíz
 });
 
+// Ruta para servir admin.html
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'admin.html')); // Asegúrate de que el archivo admin.html esté en la raíz
+});
+
 // Iniciar el servidor
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
