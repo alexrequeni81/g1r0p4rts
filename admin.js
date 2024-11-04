@@ -10,6 +10,7 @@ async function fetchUsers() {
             row.innerHTML = `
                 <td>${user.nombre}</td>
                 <td>${user.email}</td>
+                <td>${user.direcciones.map(d => `${d.tipo_via} ${d.nombre_via} ${d.numero}, ${d.poblacion}, ${d.provincia} - ${d.cp}`).join('<br>')}</td>
             `;
             usersBody.appendChild(row);
         });
@@ -28,9 +29,9 @@ async function fetchParts() {
         parts.slice(0, 10).forEach(part => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${part.referencia}</td>
-                <td>${part.descripcion}</td>
-                <td>${part.cantidad}</td>
+                <td>${part.REFERENCIA}</td>
+                <td>${part.DESCRIPCIÓN}</td>
+                <td>${part.CANTIDAD}</td>
             `;
             partsBody.appendChild(row);
         });
