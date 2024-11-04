@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración - Usuarios y Repuestos</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Administración</h1>
         <h2>Usuarios</h2>
         <div class="table-container">
+            <button id="exportUsers">Exportar a Excel</button>
+            <button id="importUsers">Importar desde Excel</button>
+            <input type="file" id="fileInput" accept=".xlsx" style="display:none;">
             <table id="usersTable">
                 <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Direcciones</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="usersBody">
