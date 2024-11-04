@@ -10,7 +10,7 @@ async function fetchUsers() {
             row.innerHTML = `
                 <td>${user.nombre}</td>
                 <td>${user.email}</td>
-                <td>${user.direcciones.map(d => `${d.tipo_via} ${d.nombre_via} ${d.numero}, ${d.poblacion}, ${d.provincia} - ${d.cp}`).join('<br>')}</td>
+                <td>${user.direcciones ? user.direcciones.map(d => `${d.tipo_via} ${d.nombre_via} ${d.numero}, ${d.poblacion}, ${d.provincia} - ${d.cp}`).join('<br>') : 'Sin direcciones'}</td>
             `;
             usersBody.appendChild(row);
         });
